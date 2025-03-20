@@ -1,0 +1,19 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'hello.css' %}">
+</head>
+
+<h1>Hello Django Template {{var_str| capfirst}}</h1>
+
+
+
+<ul>
+{% for usr in users%}
+    {% if usr.age > 25 %}
+        <h1>{{ usr.user | capfirst }} {{ usr.age }}</h1>
+    {% endif %}
+{% endfor %}
+</ul>
+
+
+<img src="{% static 'dog.jpg' %}" alt="My image">
