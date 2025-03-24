@@ -48,6 +48,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # helping apps
+    'django_extensions',
+
     # user apps
     'shop'
 ]

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">price</th>
+      <th scope="col">count</th>
+        <th scope="col">category</th>
+      <th scope="col">rating</th>
+      <th scope="col">photo</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for product in products%}
+    <tr>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.count_items}}</td>
+      <td>{{product.category}}</td>
+      <td>{{product.rating}}</td>
+      <td>{{product.photo}}</td>
+    </tr>
+  {%endfor%}
+  </tbody>
+</table>
+
+
+
+{% endblock %}

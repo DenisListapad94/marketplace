@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from shop.models import Product
 
 # users = [
 #     {"user": "Ivan", "age": 24},
@@ -31,3 +31,11 @@ def home(request):
 
 def info(request):
     return render(request, template_name="info.html")
+
+
+def products(request):
+    products = Product.objects.all()
+    context = {
+        "products": products
+    }
+    return render(request, template_name="products.html",context=context)
