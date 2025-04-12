@@ -1,6 +1,7 @@
 from django.db import models
+from shop.models.base import TimeConfig
 
-class ProductDetail(models.Model):
+class ProductDetail(TimeConfig):
 
     height=models.FloatField(null=True,blank=True)
     weight=models.FloatField(null=True,blank=True)
@@ -12,6 +13,3 @@ class ProductDetail(models.Model):
         related_name="product_detail"
     )
 
-
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)

@@ -1,7 +1,7 @@
 from django.db import models
+from shop.models.base import TimeConfig
 
-
-class ProductOrder(models.Model):
+class ProductOrder(TimeConfig):
     product = models.ForeignKey(
         to="Product",
         on_delete=models.CASCADE,
@@ -14,9 +14,6 @@ class ProductOrder(models.Model):
     )
 
     detail = models.CharField(max_length=50,null=True,blank=True)
-
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
 
 
     class Meta:

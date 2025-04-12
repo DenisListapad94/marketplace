@@ -51,9 +51,12 @@ INSTALLED_APPS = [
 
     # helping apps
     'django_extensions',
+    "debug_toolbar",
+    'crispy_forms',
+    "crispy_bootstrap5",
 
     # user apps
-    'shop',
+    'shop.apps.ShopConfig',
     'authentication'
 ]
 
@@ -62,6 +65,9 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    # debug toolbar
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -166,3 +172,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # authentication
 
 AUTH_USER_MODEL = "authentication.CustomUser"
+
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

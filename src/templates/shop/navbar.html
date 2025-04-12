@@ -1,20 +1,40 @@
-<nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'home' %}">Euroshop</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="container-fluid" id="navbarSupportedContent">
-      <ul class="navbar-nav">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row gap-3">
         <li class="nav-item">
           <a class="nav-link" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'info' %}">About</a>
+          <a class="nav-link" href="{% url 'info' %}">О нас</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'products' %}">Products</a>
+          <a class="nav-link" href="{% url 'products' %}">Все товары</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'user_orders' %}">Заказы пользователей</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'product_form' %}">Добавить продукт</a>
+        </li>
+      </ul>
+
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-row gap-3">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Войти</a>
+          </li>
+        {% endif %}
       </ul>
     </div>
   </div>

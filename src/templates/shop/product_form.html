@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow rounded w-50">
+        <div class="card-header bg-light text-center">
+            <h4 class="mb-0 text-dark">Добавить новый продукт</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data" action="{% url 'product_form' %}">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-dark">Сохранить продукт</button>
+                    <a href="{% url 'products' %}" class="btn btn-dark">Назад</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

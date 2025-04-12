@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow rounded w-50">
+        <div class="card-header bg-light text-center">
+            <h4 class="mb-0 text-dark">Вход</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-dark">Войти</button>
+                    <a href="{% url 'register' %}" class="btn btn-dark">Нет аккаунта? Зарегистрироваться</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

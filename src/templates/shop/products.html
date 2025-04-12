@@ -2,31 +2,41 @@
 
 {% block content %}
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">name</th>
-      <th scope="col">price</th>
-      <th scope="col">count</th>
-        <th scope="col">category</th>
-      <th scope="col">rating</th>
-      <th scope="col">photo</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for product in products%}
-    <tr>
-      <td>{{product.name}}</td>
-      <td>{{product.price}}</td>
-      <td>{{product.count_items}}</td>
-      <td>{{product.category}}</td>
-      <td>{{product.rating}}</td>
-      <td>{{product.photo}}</td>
-    </tr>
-  {%endfor%}
-  </tbody>
-</table>
+<h2 class="mb-4">Список продуктов</h2>
 
-
+<div class="table-responsive">
+  <table class="table table-bordered table-hover table-striped align-middle shadow-sm rounded">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Название</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Категория</th>
+        <th scope="col">Фото</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }} $</td>
+        <td>{{ product.count_items }}</td>
+        <td>{{ product.get_category_display }}</td>
+        <td>
+          {% if product.photo %}
+            <img src="{{ product.photo.url }}" alt="{{ product.name }}" width="60" height="60" class="img-thumbnail">
+          {% else %}
+            <span class="text-muted">Нет фото</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5" class="text-center text-muted">Нет доступных продуктов.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 {% endblock %}
