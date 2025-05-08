@@ -50,12 +50,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # helping apps
+    'rest_framework',
+    "rest_framework.authtoken",
+    'django_filters',
     'django_extensions',
     "debug_toolbar",
     'crispy_forms',
     "crispy_bootstrap5",
+    'rest_framework_simplejwt',
 
     # user apps
+    'shop_api',
     'shop.apps.ShopConfig',
     'authentication'
 ]
@@ -63,7 +68,11 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+
+    # "django.middleware.cache.UpdateCacheMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    # "django.middleware.cache.FetchFromCacheMiddleware",
+
     'django.middleware.csrf.CsrfViewMiddleware',
     # debug toolbar
     "debug_toolbar.middleware.DebugToolbarMiddleware",
@@ -181,3 +190,27 @@ INTERNAL_IPS = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "my_cache_table",
+    }
+}
+
+# rest framework settings
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 20,
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+}

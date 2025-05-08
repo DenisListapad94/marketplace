@@ -1,3 +1,14 @@
 Django==5.1.7
 python-dotenv==1.0.1
 psycopg2-binary==2.9.10
+pillow==11.1.0
+django-debug-toolbar==5.1.0
+django-crispy-forms==2.3
+crispy-bootstrap5==2025.4
+model-bakery==1.20.4
+Faker==37.1.0
+Markdown==3.8
+djangorestframework==3.16.0
+django-filter==25.1
+djangorestframework_simplejwt==5.5.0
+
