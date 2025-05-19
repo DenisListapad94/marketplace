@@ -7,3 +7,4 @@ from .feedback import Feedback
 from .base import TimeConfig, Rating
 from .product_rating import ProductRating
 from .provider_rating import ProviderRating
+from .queue import Queue
