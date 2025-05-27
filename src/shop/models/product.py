@@ -1,3 +1,5 @@
+import os
+from core.settings import MEDIA_URL
 from django.utils.translation import gettext_lazy as _
 
 from django.db import models
@@ -31,7 +33,8 @@ class Product(TimeConfig):
     photo = models.ImageField(
         null=True,
         blank=True,
-        verbose_name="фото"
+        verbose_name="фото",
+        upload_to=MEDIA_URL,
     )
     count_items = models.IntegerField(default=10,verbose_name="количество")
 

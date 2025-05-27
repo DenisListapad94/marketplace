@@ -13,7 +13,7 @@ def positive_integer_field_validator(value):
 class ProductModelForm(ModelForm):
     class Meta:
         model=Product
-        fields = ("name","price","count_items","description")
+        fields = ("name","price","count_items","description","photo")
         widgets = {
             "description": Textarea(attrs={"cols": 20, "rows": 5}),
         }

@@ -64,7 +64,7 @@ class UserOrdersListViews(ListView):
 #     context = {}
 #
 #     if request.method == "POST":
-#         form = ProductModelForm(request.POST)
+#         form = ProductModelForm(request.POST, request.FILE)
 #         if form.is_valid():
 #             form.save()
 #             caches["default"].clear()
@@ -82,7 +82,7 @@ class ProductCreateView(PermissionRequiredMixin,CreateView):
     template_name = "product_form.html"
     model = Product
     # form_class = ProductModelForm
-    fields = ["name","price","count_items","description"]
+    fields = ["name","price","count_items","description","photo"]
     success_url = reverse_lazy("products")
     permission_required = ["shop.add_product"]
     # redirect_field_name = "product"

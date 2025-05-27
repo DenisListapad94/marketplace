@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.db.models import F
+from django.utils.safestring import mark_safe
 from shop.models import (
     Product,
     ProductRating,
@@ -21,6 +22,13 @@ def make_discount(modeladmin, request, queryset):
     queryset.update(price = F("price") * 0.95)
 
 
+@admin.display(description='фото')
+def get_html_photo(objects):
+    if objects.photo:
+        return mark_safe(f'<img src={objects.photo.url} width=50>')
+
+
+
 class ProductAdmin(admin.ModelAdmin):
     # fields = ("name","description","photo",("price","count_items",))
     fieldsets = [
@@ -39,11 +47,11 @@ class ProductAdmin(admin.ModelAdmin):
         ),
     ]
     readonly_fields = ("description",)
-    list_display =  ("name","description","price","category","photo","count_items","is_available")
-    list_display_links = ("name","category")
-    list_editable = ("price","is_available")
+    list_display =  ("name","description","category","price","count_items",get_html_photo)
+    list_display_links = ("name",)
+    list_editable = ("price",)
     # list_per_page = 5
-    list_filter  = ("category","is_available")
+    list_filter  = ("category",)
     search_fields = ("name","price")
     ordering = ("-category","name")
     inlines = [
