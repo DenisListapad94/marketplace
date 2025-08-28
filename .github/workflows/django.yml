@@ -6,6 +6,27 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+
+    services:
+        postgres:
+          image: postgres:latest
+          env:
+            POSTGRES_HOST_AUTH_METHOD: trust
+            DB_NAME: tasktracker
+            DB_USER: postgres
+            DB_PASSWORD: 1234
+          ports:
+            - 5432:5432
+          options: >-
+            --health-cmd pg_isready
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
+  
+    env:
+      DATABASE_URL: postgres://postgres:1234@localhost:5432/tasktracker
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      POSTGRES_HOST_AUTH_METHOD: trust
     strategy:
       max-parallel: 2
       matrix:
